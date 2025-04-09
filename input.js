@@ -1,5 +1,6 @@
 // Stores the active TCP connection object.
 let connection;
+const { keyMovement, chatInputs } = require("./constants");
 
 // setup interface to handle user input from stdin
 
@@ -15,21 +16,6 @@ const setupInput = function (conn) {
 
 const handleUserInput = (key) => {
   //code handling the key press here
-  
-  const keyMovement = {
-    w: "up",
-    a: "left",
-    s: "down",
-    d: "right",
-  };
-
-  const chatInputs = {
-    1: "wow",
-    2: "rip",
-    3: "gg",
-    4: "qq",
-  };
-
   // \u0003 maps to ctrl+c input
   if (key === "\u0003") {
     process.exit();
