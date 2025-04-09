@@ -23,15 +23,28 @@ const handleUserInput = (key) => {
     d: "right",
   };
 
+  const chatInputs = {
+    1: "wow",
+    2: "rip",
+    3: "gg",
+    4: "qq",
+  };
+
   // \u0003 maps to ctrl+c input
   if (key === "\u0003") {
     process.exit();
   }
 
-  const direction = keyMovement[key]
-  
+  const chatOutputs = chatInputs[key];
+
+  if (chatOutputs) {
+    connection.write(`Say: ${chatOutputs}`);
+  }
+
+  const direction = keyMovement[key];
+
   if (direction) {
-    connection.write(`Move: ${direction}`)
+    connection.write(`Move: ${direction}`);
   }
 
 };
