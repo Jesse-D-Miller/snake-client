@@ -1,6 +1,10 @@
+// Stores the active TCP connection object.
+let connection;
+
 // setup interface to handle user input from stdin
 
-const setupInput = function () {
+const setupInput = function (conn) {
+  connection = conn;
   const stdin = process.stdin;  // create variable to hold the stdin object so we don't have to type process.stdin multiple times
   stdin.setRawMode(true); // Raw Mode allows us to listen for individual keypresses instead of waiting for the user to press enter
   stdin.setEncoding("utf8"); // utf8 encoding is set so that we can read the text data that is input
@@ -11,10 +15,25 @@ const setupInput = function () {
 
 const handleUserInput = (key) => {
   //code handling the key press here
+  
+  const keyMovement = {
+    w: "up",
+    a: "left",
+    s: "down",
+    d: "right",
+  };
+
   // \u0003 maps to ctrl+c input
   if (key === "\u0003") {
     process.exit();
   }
+
+  const direction = keyMovement[key]
+  
+  if (direction) {
+    connection.write(`Move: ${direction}`)
+  }
+
 };
 
 module.exports = setupInput;
