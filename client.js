@@ -10,10 +10,6 @@ const connect = function () {
   conn.on("connect", () => {
     console.log("Successfuly connected to game server");
     conn.write("Name: JDM");
-    conn.write("Move: up");
-    setInterval(() => {
-      conn.write("Move: up");
-    }, 50);
   });
 
   // interpret incoming data as text
