@@ -4,7 +4,12 @@ const net = require("net");
 const connect = function () {
   const conn = net.createConnection({
     host: "localhost",
-    port: 50541//idk the port number
+    port: 50541
+  });
+
+  conn.on("connect", () => {
+    console.log("Successfuly connected to game server");
+    conn.write("Name: JDM");
   });
 
   // interpret incoming data as text
